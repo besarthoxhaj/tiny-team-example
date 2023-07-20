@@ -5,8 +5,8 @@ import json
 import utils
 
 
-# utils.check_connection_status("database", 5433)
-p = psycopg2.connect(host="database", user="root", port=5433, database="W9sV6cL2dX", password="E5rG7tY3fH")
+utils.check_connection_status("postgres", 5432)
+p = psycopg2.connect(host="postgres", user="root", port=5432, database="W9sV6cL2dX", password="E5rG7tY3fH")
 k = confluent_kafka.Consumer({"bootstrap.servers": "kafka:29092", "group.id": "logs-group-1", "auto.offset.reset": "earliest"})
 k.subscribe(["logs"])
 

@@ -13,12 +13,12 @@ services:
     volumes:
       - ./data_redis:/data
 
-  database:
+  postgres:
     image: postgres:13.3
     user: root
     restart: always
     ports:
-      - 5433:5432
+      - 5432:5432
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: E5rG7tY3fH

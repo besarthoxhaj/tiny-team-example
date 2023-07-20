@@ -12,7 +12,7 @@ dc_resource("kafka",      labels=["kafka"])
 dc_resource("kafka-ui",   labels=["kafka"])
 
 dc_resource("redis",      labels=["data"])
-dc_resource("database",   labels=["data"])
+dc_resource("postgres",   labels=["data"])
 dc_resource("pgadmin",    labels=["data"])
 
 dc_resource("prometheus", labels=["monitor"])
