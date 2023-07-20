@@ -47,3 +47,7 @@ an interactive cell. Try it out :)
 
 ## Scripts
 
+```sh
+$ source env/bin/activate
+$ python scripts/create_pg_schema.py
+```
