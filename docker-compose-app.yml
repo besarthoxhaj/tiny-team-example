@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    restart: always
+    ports:
+      - 7777:7777
+    volumes:
+      - .:/src
+
+  worker:
+    build: .
+    restart: always
+    command: python -u workers/kafka_to_pg_logs.py
+    ports:
+      - 9965:9965
+    volumes:
+      - .:/src

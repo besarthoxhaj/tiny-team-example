@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis/redis-stack:latest
+    user: root
+    restart: always
+    ports:
+      - 6378:6379
+      - 8002:8001
+    environment:
+      REDIS_ARGS: --requirepass MvY4bQ7uN3
+    volumes:
+      - ./data_redis:/data
+
+  database:
+    image: postgres:13.3
+    user: root
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: E5rG7tY3fH
+      POSTGRES_DB: W9sV6cL2dX
+    volumes:
+      - ./data_pg:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    user: root
+    restart: always
+    ports:
+      - 5051:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@root.com
+      PGADMIN_DEFAULT_PASSWORD: correct
+    volumes:
+      - ./data_admin:/var/lib/pgadmin

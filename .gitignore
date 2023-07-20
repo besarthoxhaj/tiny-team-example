@@ -1,0 +1,9 @@
+env
+__pycache__
+.env
+data_admin
+data_kafka
+data_redis
+data_pg
+monitor/grafana
+monitor/prometheus/data

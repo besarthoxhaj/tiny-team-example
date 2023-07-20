@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    user: root
+    restart: always
+    volumes:
+      - ./monitor/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitor/prometheus/data:/prometheus
+      - ./monitor/prometheus/config:/etc/prometheus
+    ports:
+      - 9091:9090
+
+  exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    command:
+      - '--path.rootfs=/host'
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
+    ports:
+      - 9101:9100
+
+  promlens:
+    image: prom/promlens:latest
+    restart: always
+    ports:
+      - 7071:8080
+
+  grafana:
+    image: grafana/grafana:latest
+    user: root
+    restart: always
+    environment:
+      - GF_AUTH_DISABLE_LOGIN_FORM=false
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      - GF_SECURITY_ADMIN_USER=p3Q4r5S6t7u
+      - GF_SECURITY_ADMIN_PASSWORD=S3t4U5v6W7x
+    volumes:
+      - ./monitor/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+      - ./monitor/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitor/grafana:/var/lib/grafana
+    ports:
+      - 3001:3000
