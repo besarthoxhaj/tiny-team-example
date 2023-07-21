@@ -45,9 +45,23 @@ Visual Studio Code has a Jupyter extension which allows you to write
 code directly on a python file and by adding `#%%` transform it in
 an interactive cell. Try it out :)
 
+It is recommended to install Miniconda in order to manage the different
+environments and packages. Below the installation instructions.
+
+```sh
+$ wget -P ~/ https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+$ chmod +x ~/Miniconda3-latest-Linux-x86_64.sh
+$ ~/Miniconda3-latest-Linux-x86_64.sh -b
+$ export PATH=~/miniconda3/bin:$PATH
+$ conda init
+# IMPORTANT: close and start a new session
+$ conda config --set auto_activate_base false
+```
+
 ## Scripts
 
 ```sh
+$ ./scripts/setup_exporter.sh
 $ source env/bin/activate
 $ python scripts/create_pg_schema.py
 ```
