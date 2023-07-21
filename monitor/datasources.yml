@@ -5,7 +5,7 @@ datasources:
     type: prometheus
     access: proxy
     orgId: 1
-    url: http://prometheus:9091
+    url: http://prometheus:9090
     basicAuth: false
     isDefault: true
     editable: true
@@ -14,7 +14,7 @@ datasources:
     type: postgres
     access: proxy
     orgId: 1
-    url: postgres:5433
+    url: postgres:5432
     database: W9sV6cL2dX
     user: root
     secureJsonData:

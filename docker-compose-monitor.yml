@@ -10,7 +10,7 @@ services:
       - ./monitor/prometheus/data:/prometheus
       - ./monitor/prometheus/config:/etc/prometheus
     ports:
-      - 9091:9090
+      - 9090:9090
 
   exporter:
     image: quay.io/prometheus/node-exporter:latest
@@ -21,13 +21,13 @@ services:
     volumes:
       - '/:/host:ro,rslave'
     ports:
-      - 9101:9100
+      - 9100:9100
 
   promlens:
     image: prom/promlens:latest
     restart: always
     ports:
-      - 7071:8080
+      - 7070:8080
 
   grafana:
     image: grafana/grafana:latest
@@ -44,4 +44,4 @@ services:
       - ./monitor/grafana/dashboards:/etc/grafana/provisioning/dashboards
       - ./monitor/grafana:/var/lib/grafana
     ports:
-      - 3001:3000
+      - 3000:3000

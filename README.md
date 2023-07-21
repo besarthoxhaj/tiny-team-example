@@ -27,8 +27,20 @@ $ curl "http://localhost:7777"
 ```
 
 
+## Install and Run
+
+Make sure to install Docker before installing Docker Compose. Follow
+the instructions at https://docs.docker.com/engine/install/ubuntu/ then
+come back and continue below.
+
+
 ```sh
-$ tilt up --host 0.0.0.0 --port 10351
+$ curl -SL https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
+$ curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
+$ tilt up --host 0.0.0.0 --port 10350
+# or use normal docker compose
+$ docker-compose up -d
 ```
 
 ## Services

@@ -5,7 +5,7 @@ services:
     build: .
     restart: always
     ports:
-      - 7777:7777
+      - 8080:7777
     volumes:
       - .:/src
 
