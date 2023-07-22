@@ -11,7 +11,8 @@ app = fastapi.FastAPI()
 
 @app.on_event("startup")
 async def startup_event():
-  app.state.r = redis.Redis(host="redis", port=6379, db=0, password="MvY4bQ7uN3")
+  app.state.r = redis.Redis(host="redis", port=6379, db=0, password="MvY4bQ7uN3", decode_responses=True)
+  app.state.a = redis.Redis(host="redis", port=6379, db=1, password="MvY4bQ7uN3", decode_responses=True)
   app.state.k = confluent_kafka.Producer({"bootstrap.servers": "kafka:29092"})
 
 
@@ -23,12 +24,13 @@ def shutdown_event():
 @app.get("/")
 def read_root(request: fastapi.Request):
   app.state.r.incr("test_counter")
-  user_id = request.headers.get("User")
-  session = request.headers.get("Session")
-  item_id = str(uuid.uuid4())
-  ts = int(time.time())
+  user_id = request.headers.get("user")
+  session = request.headers.get("session")
 
-  print(f"User {user_id} in session {session} requested an item at {ts}")
+  random_item_key = app.state.a.randomkey()
+  random_item_info = app.state.a.hgetall(random_item_key)
+  item_id = random_item_info['id']
+  ts = int(time.time())
 
   # add to the user reco history of seen items
   # but also to session history to leverage in

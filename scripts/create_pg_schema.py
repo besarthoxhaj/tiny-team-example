@@ -18,11 +18,10 @@ cursor.execute("""
   );
 
   CREATE TABLE IF NOT EXISTS users (
-    id        SERIAL PRIMARY KEY,
-    gender    VARCHAR(6)  NOT NULL,
-    country   VARCHAR(20) NOT NULL,
-    age       INTEGER,
-    interests JSONB
+    id        INTEGER PRIMARY KEY,
+    gender    VARCHAR(6),
+    country   VARCHAR(20),
+    age       INTEGER
   );
 
   CREATE TABLE IF NOT EXISTS fct_hourly_metric (

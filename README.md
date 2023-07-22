@@ -70,6 +70,15 @@ $ conda init
 $ conda config --set auto_activate_base false
 ```
 
+Then you will have access to a conda enviorment. Try few commands
+to make sure everything works as expected
+
+```sh
+$ conda env list
+$ conda create --name test python=3.8 -y
+$ conda activate test
+```
+
 ## Scripts
 
 ```sh
