@@ -43,7 +43,7 @@ def read_root(request: fastapi.Request):
   # it i.e. to send to kafka servers just yet,
   # get some more and and send it all together
   # every 5 interactions
-  log_msg = json.dumps({"type": "reco", "user_id": user_id, "session": session, "item_id": item_id, "ts": ts})
+  log_msg = json.dumps({"type": "view", "user_id": user_id, "session": session, "item_id": item_id, "ts": ts})
   app.state.k.produce("logs", log_msg)
   if (len(app.state.k) > 5): app.state.k.flush()
 
@@ -63,7 +63,7 @@ def get_evt(request: fastapi.Request):
 
   # package end session event and send it
   # to kafka servers directly, no batching
-  log_msg = json.dumps({"type": "evt", "user_id": user_id, "session": session, "ts": ts})
+  log_msg = json.dumps({"type": "stop", "user_id": user_id, "session": session, "ts": ts})
   app.state.k.produce("logs", log_msg)
   app.state.k.flush()
 
