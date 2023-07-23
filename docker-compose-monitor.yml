@@ -43,5 +43,6 @@ services:
       - ./monitor/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
       - ./monitor/grafana/dashboards:/etc/grafana/provisioning/dashboards
       - ./monitor/grafana:/var/lib/grafana
+      - ./monitor/dashboards:/etc/dashboards
     ports:
       - 3000:3000

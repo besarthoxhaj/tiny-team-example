@@ -53,8 +53,8 @@ def read_root(request: fastapi.Request):
 
 @app.post("/evt")
 def get_evt(request: fastapi.Request):
-  user_id = request.headers.get("User")
-  session = request.headers.get("Session")
+  user_id = request.headers.get("user")
+  session = request.headers.get("session")
   ts = int(time.time())
 
   # add to session history to leverage in

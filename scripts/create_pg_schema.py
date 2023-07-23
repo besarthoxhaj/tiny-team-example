@@ -28,9 +28,10 @@ cursor.execute("""
     date_stamp DATE      NOT NULL DEFAULT CURRENT_DATE,
     time_stamp TIMESTAMP NOT NULL DEFAULT date_trunc('hour', CURRENT_TIMESTAMP AT TIME ZONE 'UTC'),
     evnt_stamp INTEGER            DEFAULT extract(epoch from NOW()),
-    user_id    INTEGER   NOT NULL,
-    item_id    UUID      NOT NULL,
-    session_id UUID      NOT NULL
+    user_id    INTEGER,
+    item_id    UUID,
+    evt_type   VARCHAT(20),
+    session_id UUID
   ) PARTITION BY RANGE (date_stamp);
 
   DO $$

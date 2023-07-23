@@ -86,3 +86,8 @@ $ ./scripts/setup_exporter.sh
 $ source env/bin/activate
 $ python scripts/create_pg_schema.py
 ```
+
+
+## Dashboards
+
+https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards

@@ -26,8 +26,9 @@ def insert_to_postgres(store):
       evnt_stamp,
       user_id,
       session_id,
+      evt_type,
       item_id
-    ) VALUES (%s, %s, %s, %s, %s, %s)
+    ) VALUES (%s, %s, %s, %s, %s, %s, %s)
   """
 
   insert_data = []
@@ -38,17 +39,17 @@ def insert_to_postgres(store):
     insert_data.append((
       cur_date.date(),
       cur_date.replace(minute=0, second=0, microsecond=0),
-      evt_log["ts"],
-      evt_log["user_id"],
-      evt_log["session"],
-      evt_log["item_id"]
+      evt_log.get("ts"),
+      evt_log.get("user_id"),
+      evt_log.get("session"),
+      evt_log.get("type"),
+      evt_log.get("item_id")
     ))
 
   try:
     cursor = p.cursor()
     cursor.executemany(insert_query, insert_data)
     PG_INSERTS.inc(len(insert_data))
-    print("insert_to_postgres", len(insert_data))
   except Exception as e:
     PG_ERRORS.inc()
     print("Worker error", e)
