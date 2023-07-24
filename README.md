@@ -19,7 +19,7 @@ $ pip install -r requirements.txt
 
 
 ```sh
-$ uvicorn app.main:app --host 0.0.0.0 --port 7777 --reload
+$ uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
 $ curl -X POST "http://localhost:7777/item" -H "Content-Type: application/json" -d '"Hello, Redis!"'
 # {"status": "success"}
 $ curl "http://localhost:7777"
