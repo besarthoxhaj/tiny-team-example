@@ -75,8 +75,9 @@ to make sure everything works as expected
 
 ```sh
 $ conda env list
-$ conda create --name test python=3.8 -y
-$ conda activate test
+$ conda create --name tiny python=3.8 -y
+$ conda activate tiny
+$ conda install -y pytorch torchvision torchaudio cpuonly -c pytorch
 ```
 
 ## Scripts
@@ -90,4 +91,9 @@ $ python scripts/create_pg_schema.py
 
 ## Dashboards
 
-https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards
+Prometheus and Grafana are the two main tools used for
+real-time analytics and monitoring. Read more:
+
+- https://prometheus.io/
+- https://grafana.com/docs/
+- https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards
