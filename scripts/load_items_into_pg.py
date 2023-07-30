@@ -1,8 +1,14 @@
 import psycopg2
 import httpx
+import os
 
 
-connection = psycopg2.connect(host="localhost", user="root", port=5432, database="W9sV6cL2dX", password="E5rG7tY3fH")
+USER = os.environ.get("POSTGRES_USER")
+DATABASE = os.environ.get("POSTGRES_DB")
+PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+
+
+connection = psycopg2.connect(host="localhost", user=USER, port=5432, database=DATABASE, password=PASSWORD)
 connection.autocommit = True
 cursor = connection.cursor()
 
@@ -13,6 +19,7 @@ offset = 0
 
 
 while True:
+  print("Start offset:", offset)
   curr_url = base_path + str(offset)
   items = httpx.get(curr_url).json()
   if (len(items)) == 0: break
@@ -27,5 +34,5 @@ while True:
   ))
 
   cursor.executemany(insert_query, insert_data)
-  print("offset", offset)
+  print("Finish offset:", offset)
   offset += 20000

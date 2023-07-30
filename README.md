@@ -2,23 +2,6 @@
 
 
 ```sh
-$ apt install -y python3.8-venv
-$ python3.8 -m venv env
-$ source env/bin/activate
-$ pip install fastapi
-$ pip install "uvicorn[standard]"
-$ pip install redis
-$ pip install psycopg2-binary
-$ pip install confluent-kafka
-# once done installing, save the packages
-# in a "requirements.txt" file
-$ pip freeze > requirements.txt
-# next time they can be installed directly
-$ pip install -r requirements.txt
-```
-
-
-```sh
 $ uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
 $ curl -X POST "http://localhost:7777/item" -H "Content-Type: application/json" -d '"Hello, Redis!"'
 # {"status": "success"}
@@ -26,16 +9,14 @@ $ curl "http://localhost:7777"
 # {"status": "Hello, Redis!"}
 ```
 
-
 ## Install and Run
 
 Make sure to install Docker before installing Docker Compose. Follow
 the instructions at https://docs.docker.com/engine/install/ubuntu/ then
 come back and continue below.
 
-
 ```sh
-$ curl -SL https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+$ curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
 $ sudo chmod +x /usr/local/bin/docker-compose
 $ curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
 $ tilt up --host 0.0.0.0 --port 10350
@@ -44,7 +25,6 @@ $ docker-compose up -d
 ```
 
 ## Services
-
 
 ```sh
 $ open http://[HOST_IP_ADDRESS]:8002 # RedisInsight
@@ -77,17 +57,36 @@ to make sure everything works as expected
 $ conda env list
 $ conda create --name tiny python=3.8 -y
 $ conda activate tiny
-$ conda install -y pytorch torchvision torchaudio cpuonly -c pytorch
+$ conda install -y pytorch torchvision cpuonly -c pytorch
+```
+
+Python Package Index (PIP) can be used inside a conda enviorment.
+
+```sh
+$ pip install fastapi
+$ pip install "uvicorn[standard]"
+$ pip install redis
+$ pip install psycopg2-binary
+$ pip install confluent-kafka
+$ pip install httpx
+# once done installing, save the packages
+# in a "requirements.txt" file
+$ pip freeze > requirements.txt
+# next time they can be installed directly
+$ pip install -r requirements.txt
 ```
 
 ## Scripts
 
 ```sh
 $ ./scripts/setup_exporter.sh
-$ source env/bin/activate
-$ python scripts/create_pg_schema.py
+$ conda activate tiny
+$ set -a; source .env; set +a; python scripts/create_pg_schema.py
+$ set -a; source .env; set +a; python scripts/load_items_into_pg.py
+$ set -a; source .env; set +a; python scripts/load_users_into_pg.py
+$ set -a; source .env; set +a; python scripts/load_items_into_redis.py
+$ set -a; source .env; set +a; python scripts/load_users_into_redis.py
 ```
-
 
 ## Dashboards
 

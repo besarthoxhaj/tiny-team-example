@@ -4,6 +4,8 @@ services:
   app:
     build: .
     restart: always
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
     ports:
       - 8080:7777
     volumes:
@@ -13,6 +15,10 @@ services:
     build: .
     restart: always
     command: python -u workers/kafka_to_pg_logs.py
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - 9965:9965
     volumes:

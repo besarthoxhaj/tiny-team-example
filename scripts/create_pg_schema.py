@@ -1,7 +1,13 @@
 import psycopg2
+import os
 
 
-connection = psycopg2.connect(host="localhost", user="root", port=5432, database="W9sV6cL2dX", password="E5rG7tY3fH")
+USER = os.environ.get("POSTGRES_USER")
+DATABASE = os.environ.get("POSTGRES_DB")
+PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+
+
+connection = psycopg2.connect(host="localhost", user=USER, port=5432, database=DATABASE, password=PASSWORD)
 connection.autocommit = True
 cursor = connection.cursor()
 
@@ -30,7 +36,7 @@ cursor.execute("""
     evnt_stamp INTEGER            DEFAULT extract(epoch from NOW()),
     user_id    INTEGER,
     item_id    UUID,
-    evt_type   VARCHAT(20),
+    evt_type   VARCHAR(20),
     session_id UUID
   ) PARTITION BY RANGE (date_stamp);
 

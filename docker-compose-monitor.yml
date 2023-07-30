@@ -37,8 +37,8 @@ services:
       - GF_AUTH_DISABLE_LOGIN_FORM=false
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
-      - GF_SECURITY_ADMIN_USER=p3Q4r5S6t7u
-      - GF_SECURITY_ADMIN_PASSWORD=S3t4U5v6W7x
+      - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_USER}
     volumes:
       - ./monitor/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
       - ./monitor/grafana/dashboards:/etc/grafana/provisioning/dashboards

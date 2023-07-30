@@ -3,7 +3,7 @@ docker_compose([
   "./docker-compose-monitor.yml",
   "./docker-compose-data.yml",
   "./docker-compose-kafka.yml",
-])
+], env_file=".env", project_name="tiny-team")
 
 dc_resource("app",        labels=["app"])
 dc_resource("worker",     labels=["app"])

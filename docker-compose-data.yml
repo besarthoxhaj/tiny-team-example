@@ -9,7 +9,7 @@ services:
       - 6379:6379
       - 8001:8001
     environment:
-      REDIS_ARGS: --requirepass MvY4bQ7uN3
+      REDIS_ARGS: --requirepass ${REDIS_PASSWORD}
     volumes:
       - ./data_redis:/data
 
@@ -20,9 +20,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: E5rG7tY3fH
-      POSTGRES_DB: W9sV6cL2dX
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - ./data_pg:/var/lib/postgresql/data
 
@@ -33,7 +33,7 @@ services:
     ports:
       - 5050:80
     environment:
-      PGADMIN_DEFAULT_EMAIL: root@root.com
-      PGADMIN_DEFAULT_PASSWORD: correct
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     volumes:
       - ./data_admin:/var/lib/pgadmin

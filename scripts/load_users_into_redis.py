@@ -1,10 +1,16 @@
 import psycopg2
-import datetime
 import redis
+import os
 
 
-r = redis.Redis(host="localhost", port=6379, db=2, password="MvY4bQ7uN3")
-connection = psycopg2.connect(host="localhost", user="root", port=5432, database="W9sV6cL2dX", password="E5rG7tY3fH")
+REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD")
+USER = os.environ.get("POSTGRES_USER")
+DATABASE = os.environ.get("POSTGRES_DB")
+PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+
+
+r = redis.Redis(host="localhost", port=6379, db=1, password=REDIS_PASSWORD)
+connection = psycopg2.connect(host="localhost", user=USER, port=5432, database=DATABASE, password=PASSWORD)
 
 
 with connection:
