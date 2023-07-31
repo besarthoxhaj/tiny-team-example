@@ -69,6 +69,7 @@ $ pip install redis
 $ pip install psycopg2-binary
 $ pip install confluent-kafka
 $ pip install httpx
+$ pip install wandb
 # once done installing, save the packages
 # in a "requirements.txt" file
 $ pip freeze > requirements.txt

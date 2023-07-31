@@ -73,7 +73,6 @@ def get_evt(request: fastapi.Request):
   return "ok"
 
 
-
 @app.post("/item")
 async def create_item(data: str = fastapi.Body(None)):
   app.state.r.set("test", data)
