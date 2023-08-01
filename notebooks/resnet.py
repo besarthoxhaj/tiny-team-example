@@ -42,7 +42,7 @@ class CustomResNet(torch.nn.Module):
 
   def forward(self, x):
     x = self.resnet(x)
-    x = self.relu(x);
+    x = self.relu(x)
     emb = x # save embeddings
     x = self.last(x)
     return x, emb
